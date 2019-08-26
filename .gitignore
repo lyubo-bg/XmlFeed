@@ -3,3 +3,8 @@
 ################################################################################
 
 /packages
+/XMLFeed/bin
+/XMLFeed.Tests/obj/Debug
+/XMLFeed.Tests/bin/Debug
+/.vs
+/XMLFeed/obj/Debug

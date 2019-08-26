@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Friction Items";
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(document).ready(function () {
+            RefreshModel();
+            
+        });
+
+        function RefreshModel() {
+            $("#itemsHolder").html(""); 
+            $("#info").show();
+            $("#refreshButtonHolder").hide();
+            $.ajax({
+                url: "/XmlFeed/Items",
+                type: 'GET',
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    var htmlForPages = "";
+                    for (var i = 0; i < data.length; i++) {
+                        htmlForPages += "<div><h3>" + data[i].Heading + "</h3></div><div><span>" + data[i].Date + "</span></div><div><img src=" + data[i].Image + " /></div><div><span>Category - " + data[i].Category + " </span></div><br>";
+                    }
+                    $("#itemsHolder").html(htmlForPages); 
+                    $("#info").hide();
+                    $("#refreshButtonHolder").show();
+                },
+                error: function (error) {
+                    $(this).remove();
+                    alert(error.statusText);
+                }
+            });
+        }
+    </script>
+}
+
+
+<div class="row">
+    <div id="info"><h1>Loading data ...</h1></div>
+    <div id="refreshButtonHolder" style="margin-top:20px;width:100px" ><button class="btn btn-primary btn-block" onclick="RefreshModel()">Refresh</button></div>
+    @*<button class="col-md-4" onclick="RefreshModel()">Refresh Model</button>*@
+    <div class="col-md-4" id="itemsHolder">
+    </div>
+</div>
