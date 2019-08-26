@@ -2,7 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/packages
 /XMLFeed/bin
 /XMLFeed.Tests/obj/Debug
 /XMLFeed.Tests/bin/Debug
